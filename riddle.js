@@ -9,3 +9,10 @@ function checkRiddle() {
     feedback.textContent = "Wrong answer. Try again.";
   }
 }
+
+// 🔥 Add this to trigger checkRiddle() on Enter
+document.getElementById("riddle-answer").addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    checkRiddle();
+  }
+});
