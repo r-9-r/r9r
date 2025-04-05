@@ -21,6 +21,12 @@
         <a href="https://www.linkedin.com/in/ryan-klauder-063a8051/" target="_blank" title="LinkedIn">
           <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/linkedin.svg" alt="LinkedIn" width="24" height="24" style="vertical-align: middle; filter: invert(1);">
         </a>
+        <a href="https://github.com/r-9-r" target="_blank" title="GitHub" style="margin-left: 10px;">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/github.svg" alt="GitHub" width="24" height="24" style="vertical-align: middle; filter: invert(1);">
+        </a>
+        <a href="mailto:rklauder@gmail.com" title="Email" style="margin-left: 10px;">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/gmail.svg" alt="Email" width="24" height="24" style="vertical-align: middle; filter: invert(1);">
+        </a>
       </p>
     </header>
 
