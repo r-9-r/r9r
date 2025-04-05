@@ -1,54 +1,56 @@
-/* Neon glow effect */
-.neon {
-  color: #39ff14;
-  text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14;
-}
-
-/* Typewriter effect */
-.typewriter {
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: .15em solid #39ff14;
-  animation: typing 3s steps(30, end), blink-caret .75s step-end infinite;
-}
-
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: #39ff14 }
-}
-
-/* === Base Page Styling === */
+/* Base Styling */
 body {
   background-color: black;
   color: white;
   font-family: 'Share Tech Mono', monospace;
-  padding: 20px;
-  line-height: 1.6;
+  padding: 40px 20px;
+  max-width: 700px;
+  margin: auto;
+  line-height: 1.7;
 }
 
-/* Links */
-a {
-  color: #39ff14;
-  text-decoration: underline;
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: black;
+  border-bottom: 1px solid #444;
+  text-align: center;
+  padding: 10px 0;
+  z-index: 1000;
 }
 
-/* Neon Heading */
-.neon {
-  color: #39ff14;
-  text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14;
+nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 14px;
 }
 
-/* Typewriter effect */
+main {
+  padding-top: 80px;
+}
+
+h1, h2, h3 {
+  color: #8fff8f;
+  margin-top: 40px;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
 .typewriter {
   overflow: hidden;
   white-space: nowrap;
-  border-right: .15em solid white;
-  animation: typing 3s steps(30, end), blink-caret .75s step-end infinite;
+  border-right: .15em solid #8fff8f;
+  animation: typing 2.5s steps(30, end), blink-caret .75s step-end infinite;
 }
 
 @keyframes typing {
@@ -58,25 +60,12 @@ a {
 
 @keyframes blink-caret {
   from, to { border-color: transparent }
-  50% { border-color: white }
+  50% { border-color: #8fff8f }
 }
 
-/* Inputs and Buttons */
-input, button {
-  background-color: black;
-  color: white;
-  border: 1px solid #39ff14;
-  padding: 6px 10px;
-  font-family: inherit;
-  margin-top: 10px;
-}
-
-button:hover {
-  background-color: #111;
-  cursor: pointer;
-}
-
-/* Blog Posts */
-.blog-post {
-  margin-bottom: 2rem;
+footer {
+  text-align: center;
+  margin-top: 80px;
+  font-size: 14px;
+  color: #888;
 }
