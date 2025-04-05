@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>paper me</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <a href="index.html#thoughts">💭 thoughts</a>
+    <a href="index.html#who">who i think i am</a>
+    <a href="paper_me.html">paper me</a>
+  </nav>
+
+  <main>
+    <header>
+      <h1 class="pulse">📄 paper me</h1>
+    </header>
+
+    <section>
+      <h2>resume</h2>
+      <p>you can view or download my resume below:</p>
+      <object data="assets/resume.pdf" type="application/pdf" width="100%" height="600px">
+        <p>It looks like your browser doesn't support PDFs. <a href="assets/resume.pdf" target="_blank">Download the resume here.</a></p>
+      </object>
+    </section>
+
+    <section>
+      <h2>performance reviews</h2>
+      <p>below are selected performance reviews:</p>
+      <ul>
+        <li><a href="assets/performance_review_2023.pdf" target="_blank">2023 Review</a></li>
+        <li><a href="assets/performance_review_2022.pdf" target="_blank">2022 Review</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 my name</p>
+  </footer>
+</body>
+</html>
