@@ -28,3 +28,23 @@ document.addEventListener("DOMContentLoaded", function() {
   // Auto-focus the input field on page load
   input.focus();
 });
+
+// Load blog posts from posts.json
+fetch('posts.json')
+  .then(response => response.json())
+  .then(posts => {
+    const container = document.getElementById("blog-posts");
+    posts.forEach(post => {
+      const postDiv = document.createElement("div");
+      postDiv.classList.add("blog-post");
+
+      postDiv.innerHTML = `
+        <h3 class="neon">${post.title}</h3>
+        <p><em>${post.date}</em></p>
+        <p>${post.body}</p>
+        <hr>
+      `;
+
+      container.appendChild(postDiv);
+    });
+  });
