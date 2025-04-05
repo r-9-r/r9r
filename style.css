@@ -1,0 +1,23 @@
+body {
+  background-color: black;
+  color: #39ff14;
+  font-family: monospace;
+  padding: 20px;
+}
+
+h1, h2 {
+  color: #39ff14;
+}
+
+a {
+  color: #39ff14;
+  text-decoration: underline;
+}
+
+input, button {
+  background-color: black;
+  color: #39ff14;
+  border: 1px solid #39ff14;
+  padding: 5px;
+  margin-top: 10px;
+}
