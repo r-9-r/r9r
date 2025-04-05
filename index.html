@@ -3,35 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>analytical thoughts</title>
+  <title>my personal site</title>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <nav>
-    <a href="#blog">thoughts</a>
-    <a href="#about">who i think i am</a>
+    <a href="#thoughts">thoughts</a>
+    <a href="#who">who i think i am</a>
     <a href="assets/resume.pdf" target="_blank">paper me</a>
   </nav>
 
   <main>
     <header>
-      <h1 class="typewriter">hi</h1>
+      <h1 class="typewriter">welcome to my 🧠</h1>
     </header>
 
-    <section id="blog">
+    <section id="thoughts">
       <h2>thoughts</h2>
       <div id="blog-posts"></div>
     </section>
 
-    <section id="about">
+    <section id="who">
       <h2>who i think i am</h2>
-      <p>curious. i believe ideas are meant to be shared, iterated on, and made real.</p>
+      <p>curious, very curious. i believe ideas and thoughts are meant to be shared, discussed and iterated.</p>
     </section>
   </main>
 
   <footer>
-    <p>&copy; not sure what this is</p>
+    <p>&copy; 2025 my name</p>
   </footer>
 
   <script>
@@ -42,7 +42,7 @@
         posts.forEach(post => {
           const el = document.createElement('article');
           el.innerHTML = `
-            <h3>${post.title}</h3>
+            <h3>${post.title.toLowerCase()}</h3>
             <p><em>${post.date}</em></p>
             <p>${post.body}</p>
             <hr>
