@@ -1,0 +1,9 @@
+my-site/
+├── index.html          # Main page (includes the puzzle gate + content)
+├── styles.css          # All your CSS: neon green text, black bg, styling
+├── script.js           # JS for puzzle logic, tracking, and transitions
+├── users.json          # (Optional) List of valid puzzle answers linked to visitor IDs
+├── logs/               # (Optional) Store logs of visits if using serverless or static logging
+├── assets/             # Images, resume PDFs, etc.
+│   └── resume.pdf
+├── README.md           # Project description + deployment instructions
