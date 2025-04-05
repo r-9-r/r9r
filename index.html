@@ -8,12 +8,15 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav>
-    <a href="#thoughts">thoughts 💭</a>
-    <a href="#who">who am i?</a>
-  <a href="paperme.html">paper me</a>
+<div id="nav-placeholder"></div>
+<script>
+  fetch('nav.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('nav-placeholder').innerHTML = data;
+    });
+</script>
 
-  </nav>
 
   <main>
     <header>
