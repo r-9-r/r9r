@@ -17,6 +17,11 @@
   <main>
     <header>
       <h1 class="pulse">📄 paper me</h1>
+      <p>
+        <a href="https://www.linkedin.com/in/ryan-klauder-063a8051/" target="_blank" title="LinkedIn">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/linkedin.svg" alt="LinkedIn" width="24" height="24" style="vertical-align: middle; filter: invert(1);">
+        </a>
+      </p>
     </header>
 
     <section>
