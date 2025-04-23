@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>thoughts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+  <script>
+    fetch('nav.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+
+        const subscribeLink = document.querySelector('a[href*="#subscribe"]');
+        if (subscribeLink) {
+          subscribeLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const subscribeSection = document.getElementById('subscribe');
+            if (subscribeSection) {
+              subscribeSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          });
+        }
+      });
+  </script>
+
+  <main>
+    <section id="thoughts">
+      <h1>🧠 thoughts</h1>
+      <p>
+        These are <span data-comment-id="curious">curious, very curious</span> ideas I've been pondering lately.
+      </p>
+      <!-- More content here, all commentable -->
+    </section>
+
+    <section id="subscribe">
+      <h2>📬 subscribe</h2>
+      <p>get new thoughts directly to your inbox.</p>
+      <iframe src="https://analyticalthoughts.substack.com/embed" width="480" height="320" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 r9r</p>
+  </footer>
+
+  <script src="comments.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const observer = new MutationObserver(() => {
+        if (window.enableComments) {
+          window.enableComments();
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    });
+  </script>
+</body>
+</html>
