@@ -10,6 +10,16 @@
     html {
       scroll-behavior: smooth;
     }
+    .tag {
+      display: inline-block;
+      margin: 2px 6px 2px 0;
+      padding: 2px 6px;
+      background: #333;
+      color: #0f0;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -36,6 +46,7 @@
   <main>
     <section id="thoughts">
       <h1>🧠 thoughts</h1>
+      <div id="filter-bar"></div>
       <div id="posts-container"></div>
     </section>
 
@@ -69,14 +80,27 @@
         const response = await fetch('posts.json');
         const posts = await response.json();
         const container = document.getElementById('posts-container');
+        const filterBar = document.getElementById('filter-bar');
+
+        const allTags = [...new Set(posts.flatMap(p => p.tags))];
+        allTags.forEach(tag => {
+          const btn = document.createElement('button');
+          btn.textContent = tag;
+          btn.className = 'tag';
+          btn.onclick = () => filterPostsByTag(tag);
+          filterBar.appendChild(btn);
+        });
 
         posts.forEach(post => {
           const postElement = document.createElement('div');
           postElement.className = 'post';
 
+          const tagMarkup = post.tags.map(tag => `<span class="tag" data-tag="${tag}">${tag}</span>`).join(' ');
+
           postElement.innerHTML = `
             <h3><span data-comment-id="title-${post.id}">${post.title}</span></h3>
             <p><span data-comment-id="body-${post.id}">${post.body}</span></p>
+            <div class="tags">${tagMarkup}</div>
           `;
 
           container.appendChild(postElement);
@@ -88,6 +112,13 @@
       } catch (error) {
         console.error('Error loading posts:', error);
       }
+    }
+
+    function filterPostsByTag(tag) {
+      document.querySelectorAll('.post').forEach(post => {
+        const hasTag = [...post.querySelectorAll('[data-tag]')].some(el => el.dataset.tag === tag);
+        post.style.display = hasTag ? '' : 'none';
+      });
     }
 
     document.addEventListener('DOMContentLoaded', loadPosts);
