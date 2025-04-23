@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +13,14 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="nav-placeholder"></div>
-<script>
-  fetch('nav.html')
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById('nav-placeholder').innerHTML = data;
-    });
-</script>
+  <div id="nav-placeholder"></div>
+  <script>
+    fetch('nav.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+  </script>
 
 
   <main>
@@ -82,7 +87,11 @@
   </main>
 
   <footer>
-    <p>&copy; 2025 my name</p>
+    <p>&copy; 2025 r9r</p>
   </footer>
+
+    <script src="comments.js"></script>
 </body>
 </html>
+
+
