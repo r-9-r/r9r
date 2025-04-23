@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>thoughts</title>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 <body>
   <div id="nav-placeholder"></div>
@@ -31,10 +36,7 @@
   <main>
     <section id="thoughts">
       <h1>🧠 thoughts</h1>
-      <p>
-        These are <span data-comment-id="curious">curious, very curious</span> ideas I've been pondering lately.
-      </p>
-      <!-- More content here, all commentable -->
+      <div id="posts-container"></div>
     </section>
 
     <section id="subscribe">
@@ -59,6 +61,36 @@
       });
       observer.observe(document.body, { childList: true, subtree: true });
     });
+  </script>
+
+  <script>
+    async function loadPosts() {
+      try {
+        const response = await fetch('posts.json');
+        const posts = await response.json();
+        const container = document.getElementById('posts-container');
+
+        posts.forEach(post => {
+          const postElement = document.createElement('div');
+          postElement.className = 'post';
+
+          postElement.innerHTML = `
+            <h3><span data-comment-id="title-${post.id}">${post.title}</span></h3>
+            <p><span data-comment-id="body-${post.id}">${post.body}</span></p>
+          `;
+
+          container.appendChild(postElement);
+        });
+
+        if (window.enableComments) {
+          window.enableComments();
+        }
+      } catch (error) {
+        console.error('Error loading posts:', error);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadPosts);
   </script>
 </body>
 </html>
