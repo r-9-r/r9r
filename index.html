@@ -15,6 +15,7 @@
 <body>
   <div id="nav-placeholder"></div>
   <script>
+    // Load the navigation HTML and attach smooth scroll to the Subscribe link
     fetch('nav.html')
       .then(res => res.text())
       .then(data => {
@@ -65,6 +66,7 @@
   </script> -->
 
   <script>
+    // Loads blog posts from posts.json and renders them with preserved HTML formatting
     async function loadPosts() {
       try {
         const response = await fetch('posts.json');
@@ -75,11 +77,13 @@
           const postElement = document.createElement('div');
           postElement.className = 'post';
 
+          // Generate tags if any
           const tagMarkup = post.tags.map(tag => `<span class="tag" data-tag="${tag}">${tag}</span>`).join(' ');
 
+          // Render full HTML content directly
           postElement.innerHTML = `
             <h3><span data-comment-id="title-${post.id}">${post.title}</span></h3>
-            <p><span data-comment-id="body-${post.id}">${post.body}</span></p>
+            <div data-comment-id="body-${post.id}">${post.body}</div>
             <div class="tags">${tagMarkup}</div>
           `;
 
@@ -95,6 +99,7 @@
       }
     }
 
+    // Kick off the post rendering once the DOM is loaded
     document.addEventListener('DOMContentLoaded', loadPosts);
   </script>
 </body>
