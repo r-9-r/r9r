@@ -117,13 +117,27 @@
     }
 
     function filterPostsByTag(tag) {
+      // New logic: Navigate to #thoughts and filter via URL param
+      const url = new URL(window.location);
+      url.searchParams.set('tag', tag);
+      window.history.pushState({}, '', url);
+      applyTagFilter(tag);
+    }
+
+    function applyTagFilter(tag) {
       document.querySelectorAll('.post').forEach(post => {
         const hasTag = [...post.querySelectorAll('[data-tag]')].some(el => el.dataset.tag === tag);
         post.style.display = hasTag ? '' : 'none';
       });
     }
 
-    document.addEventListener('DOMContentLoaded', loadPosts);
+    document.addEventListener('DOMContentLoaded', () => {
+      loadPosts().then(() => {
+        const params = new URLSearchParams(window.location.search);
+        const tag = params.get('tag');
+        if (tag) applyTagFilter(tag);
+      });
+    });
   </script>
 </body>
 </html>
