@@ -98,7 +98,19 @@
         const posts = await response.json();
         const container = document.getElementById('posts-container');
 
+        // List of posts to temporarily hide (as if commented out)
+        const HIDDEN_POST_IDS = [
+          "waves-and-webs-part-2",
+          "waves-and-webs-part-3",
+          "waves-and-webs-part-4",
+          "waves-and-webs-part-5",
+          "waves-and-webs-part-6",
+          "waves-and-webs-part-7"
+        ];
+
         posts.forEach(post => {
+          if (HIDDEN_POST_IDS.includes(post.id)) return; // skip hidden posts
+
           const postElement = document.createElement('div');
           postElement.className = 'post';
 
