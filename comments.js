@@ -34,28 +34,40 @@ function removeExistingBox() {
   if (existing) existing.remove();
 }
 
-// 3. Submit Comment to Google Sheets
+// 3. Submit Comment via XMLHttpRequest to avoid CORS preflight
 function submitComment() {
   const comment = document.getElementById("comment-text").value;
   const email = document.getElementById("comment-email").value;
   if (!comment.trim()) return alert("Please enter a comment.");
 
-  fetch(COMMENT_API_URL, {
-    method: "POST",
-    body: JSON.stringify({
-      page: window.location.href,
-      selection: selectedText,
-      comment,
-      email
-    }),
-    headers: {
-      "Content-Type": "application/json"
+  const payload = {
+    page: window.location.href,
+    selection: selectedText,
+    comment,
+    email
+  };
+
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", COMMENT_API_URL, true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      alert("comment submitted!");
+      removeExistingBox();
+      location.reload();
+    } else {
+      console.error("XHR error:", xhr.responseText);
+      alert("error sending comment");
     }
-  }).then(() => {
-    alert("comment submitted!");
-    removeExistingBox();
-    location.reload();
-  }).catch(() => alert("error sending comment"));
+  };
+
+  xhr.onerror = function () {
+    console.error("XHR network error");
+    alert("error sending comment");
+  };
+
+  xhr.send(JSON.stringify(payload));
 }
 
 // 4. Load Comments on Page Load
@@ -70,5 +82,8 @@ window.onload = () => {
         block.innerHTML = `<p><strong>${c.selection}</strong></p><p>${c.comment}</p><p style="font-size:12px; color:#888;">${c.email || 'anonymous'}</p>`;
         document.body.appendChild(block);
       });
+    })
+    .catch(err => {
+      console.error("Error loading comments:", err);
     });
 };
