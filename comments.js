@@ -18,11 +18,11 @@ function showCommentBox(text) {
   const box = document.createElement("div");
   box.id = "comment-box";
   box.innerHTML = `
-    <div style="background:#111; color:white; border:1px solid #39ff14; padding:12px; position:fixed; top:20%; left:50%; transform:translateX(-50%); z-index:9999; max-width:400px;">
+    <div style="background:var(--bg-raised); color:var(--text); border:1px solid var(--accent); padding:12px; position:fixed; top:20%; left:50%; transform:translateX(-50%); z-index:9999; max-width:400px;">
       <p><strong>comment on:</strong> "${text.slice(0, 80)}${text.length > 80 ? '…' : ''}"</p>
       <textarea id="comment-text" placeholder="your thoughts..." style="width:100%; margin-top:8px;"></textarea>
       <input id="comment-email" type="email" placeholder="optional email" style="width:100%; margin-top:6px;">
-      <button onclick="submitComment()" style="margin-top:10px; background:#39ff14; color:black; padding:6px 10px; cursor:pointer;">submit</button>
+      <button onclick="submitComment()" style="margin-top:10px; background:var(--accent); color:var(--bg); padding:6px 10px; cursor:pointer;">submit</button>
       <button onclick="removeExistingBox()" style="margin-left:10px;">cancel</button>
     </div>
   `;
@@ -78,8 +78,8 @@ window.onload = () => {
       const comments = data.filter(c => c.page === window.location.href);
       comments.forEach(c => {
         const block = document.createElement("div");
-        block.style = "border-left:2px solid #39ff14; padding-left:10px; margin:20px 0; background:#111; color:#ccc;";
-        block.innerHTML = `<p><strong>${c.selection}</strong></p><p>${c.comment}</p><p style="font-size:12px; color:#888;">${c.email || 'anonymous'}</p>`;
+        block.style = "border-left:2px solid var(--accent); padding-left:10px; margin:20px 0; background:var(--bg-raised); color:var(--text-soft);";
+        block.innerHTML = `<p><strong>${c.selection}</strong></p><p>${c.comment}</p><p style="font-size:12px; color:var(--text-faint);">${c.email || 'anonymous'}</p>`;
         document.body.appendChild(block);
       });
     })

@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f4f0e6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
   <title>thoughts</title>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -13,10 +16,9 @@
     .post {
       margin: 4em 0;
       padding: 2em 1em;
-      border-top: 1px solid #333;
-      border-bottom: 1px solid #333;
-      background-color: #0a0a0a;
-      box-shadow: 0 0 12px rgba(0, 255, 100, 0.05);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      background-color: var(--bg-raised);
     }
     .post:first-child {
       border-top: none;
@@ -25,14 +27,14 @@
       font-size: 1.6em;
       margin-top: 0;
       margin-bottom: 0.5em;
-      color: #0f0;
+      color: var(--post-title);
     }
     .post div[data-comment-id^="body-"] h3,
     .post div[data-comment-id^="body-"] h4,
     .post div[data-comment-id^="body-"] h5 {
       font-size: 1em;
       font-weight: normal;
-      color: #aaa;
+      color: var(--text-soft);
       margin-top: 1em;
     }
   </style>
