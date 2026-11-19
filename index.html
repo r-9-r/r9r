@@ -29,6 +29,11 @@
       margin-bottom: 0.5em;
       color: var(--post-title);
     }
+    .links { font-size: 14px; color: var(--text-soft); margin: 0; }
+    .muted { color: var(--text-soft); }
+    .feed { list-style: none; padding: 0; margin: 0 0 2em; }
+    .feed li { display: flex; justify-content: space-between; gap: 1em; padding: 6px 0; border-bottom: 1px dashed var(--rule-soft); }
+    .feed .date { color: var(--text-faint); white-space: nowrap; font-size: 14px; }
     .post div[data-comment-id^="body-"] h3,
     .post div[data-comment-id^="body-"] h4,
     .post div[data-comment-id^="body-"] h5 {
@@ -62,20 +67,36 @@
   </script>
 
   <main>
+    <p class="links">
+      <a href="https://graymatterlabs.xyz" target="_blank">gray matter labs</a> ·
+      <a href="https://www.linkedin.com/in/ryan-klauder-pmp-063a8051" target="_blank">linkedin</a> ·
+      <a href="https://analyticalthoughts.substack.com" target="_blank">substack</a> ·
+      <a href="https://github.com/r-9-r" target="_blank">github</a>
+    </p>
+
     <section id="thoughts">
       <h1>🧠 thoughts</h1>
+      <p class="muted">new posts from <a href="https://analyticalthoughts.substack.com" target="_blank">analytical thoughts</a>, updated daily.</p>
+      <ul id="feed-list" class="feed"></ul>
+      <h2>🗂 archive</h2>
       <div id="posts-container"></div>
+    </section>
+
+    <section id="who">
+      <h1>🤔 who i think i am</h1>
+      <p>i build the operating systems companies run on: the operating reviews, pipeline models and, lately, the ai agents that close the gaps between teams.</p>
+      <p>14 years across fintech, regulated data, saas, energy and manufacturing. stood up business operations and analytics twice, at chainalysis and sayari, and led company-wide ai adoption with production agents behind it.</p>
+      <p>now running <a href="https://graymatterlabs.xyz" target="_blank">gray matter labs</a>, building agents for the gaps between people. the long version is on <a href="paper_me.html">paper me</a>.</p>
     </section>
 
     <section id="subscribe">
       <h2>📬 subscribe</h2>
-      <p>get new thoughts directly to your inbox.</p>
-      <iframe src="https://analyticalthoughts.substack.com/embed" width="360" height="240" style="border:1px solid #EEE; background:white;" frameborder="0" scrolling="no"></iframe>
+      <p>get new thoughts directly to your inbox: <a href="https://analyticalthoughts.substack.com/subscribe" target="_blank">subscribe on substack →</a></p>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 r9r</p>
+    <p>&copy; 2026 r9r</p>
   </footer>
 
   <!-- Commenting functionality temporarily disabled. Will be added back in later. -->
@@ -93,6 +114,27 @@
   </script> -->
 
   <script>
+    // Lists the latest Substack posts from feed.json (refreshed daily by a GitHub Action)
+    async function loadFeed() {
+      const list = document.getElementById('feed-list');
+      try {
+        const items = await (await fetch('feed.json', { cache: 'no-cache' })).json();
+        if (!items.length) throw new Error('empty feed');
+        for (const p of items.slice(0, 20)) {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = p.link; a.target = '_blank'; a.textContent = p.title;
+          const d = document.createElement('span');
+          d.className = 'date'; d.textContent = p.date;
+          li.append(a, d);
+          list.appendChild(li);
+        }
+      } catch (e) {
+        list.innerHTML = '<li><a href="https://analyticalthoughts.substack.com" target="_blank">read the latest on substack →</a></li>';
+      }
+    }
+    loadFeed();
+
     // Loads blog posts from posts.json and renders them with preserved HTML formatting
     async function loadPosts() {
       try {
